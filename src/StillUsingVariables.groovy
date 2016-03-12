@@ -40,7 +40,7 @@ class StillUsingVariables {
      */
     StillUsingVariables() {
     }
-
+    // Fields
     String firstName
     String lastName
     int yearOfGraduation
@@ -86,42 +86,77 @@ class StillUsingVariables {
 }
 
 /**
+ * Creates methods and variables which print information about the class.
  *
+ * The class implements the trait Statement for the purpose of demonstrating
+ * the differences between a trait and an interface.
+ *
+ * @see URL http://docs.groovy-lang.org/latest/html/documentation/index.html#_traits
  */
 class Me implements Statement {
     static String name = "Andrew Parker";
     static int year = 2016;
-
+    /** Method speak is called in Class StillUsingVariables.
+     *  Prints two statements.
+     */
     static void speak() {
         println "My name is $name and the year is $year."
         println "My favourite colour is $favColour."
     }
-
+    /** Method eating is called in Class StillUsingVariables.
+     * Prints one statement.
+     * @param food
+     */
     @Override
     void eating(String food) {
         println "I am eating $food."
     }
-
+    /** Method walking is called in Class StillUsingVariables.
+     * Prints one statement.
+     */
     @Override
     void walking() {
         println "I walk a lot."
     }
 }
+/** Interface which holds the value of favourite colour
+ *
+ */
 interface FavouriteColour {
     static favColour = "blue"
 }
+/** Interface which implements the method eating which
+ * takes as a parameter a String.
+ */
 interface Eating {
     void eating(String food)
 }
 
+/** Interface which implements the method walking
+ *
+ */
 interface Exercise {
     void walking()
 }
 // a trait can have a method with a code block, an interface cannot.
+/** Trait which implements the interfaces Eating, FavouriteColour and
+ * Exercise. Also holds the static variable for date of birth and
+ * implements the methods for speaking which takes a string, and
+ * the method for running.
+ */
 trait Statement implements Eating, FavouriteColour, Exercise {
     static String dateOfBirth = "5.12.84"
+    /** Method speaking is called in Class StillUsingVariables.
+     * Prints one statement, and returns a String.
+     * @param verb The doing word to express the type of speaking.
+     * @return String A statement about what is being done.
+     */
     String speaking(String verb) { "I am $verb." }
     // trait methods do not have to be implemented.
+    /** Method running is not implemented.
+     *
+     * @return String A statement about running.
+     */
     private String running() { "I am not running unless it's hot outside."}
 }
 
